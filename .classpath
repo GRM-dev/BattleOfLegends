@@ -2,18 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="libs"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="libs/AppleJavaExtensions.jar"/>
-	<classpathentry kind="lib" path="libs/asm-debug-all.jar"/>
-	<classpathentry kind="lib" path="libs/ibxm.jar"/>
 	<classpathentry kind="lib" path="libs/jinput.jar"/>
 	<classpathentry kind="lib" path="libs/jnlp.jar"/>
 	<classpathentry kind="lib" path="libs/jogg-0.0.7.jar"/>
 	<classpathentry kind="lib" path="libs/jorbis-0.0.15.jar"/>
-	<classpathentry kind="lib" path="libs/lwjgl_test.jar"/>
-	<classpathentry kind="lib" path="libs/lwjgl_util_applet.jar"/>
 	<classpathentry kind="lib" path="libs/lwjgl_util.jar"/>
-	<classpathentry kind="lib" path="libs/lwjgl-debug.jar"/>
 	<classpathentry kind="lib" path="libs/lwjgl.jar">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BattleOfLegends/libs/native/windows"/>
@@ -24,8 +19,6 @@
 	<classpathentry kind="lib" path="libs/natives-mac.jar"/>
 	<classpathentry kind="lib" path="libs/natives-windows.jar"/>
 	<classpathentry kind="lib" path="libs/PatrykLib.jar"/>
-	<classpathentry kind="lib" path="libs/slick-examples.jar"/>
 	<classpathentry kind="lib" path="libs/slick.jar"/>
-	<classpathentry kind="lib" path="libs/tinylinepp.jar"/>
-	<classpathentry kind="output" path="out/production/BattleOfLegends"/>
+	<classpathentry kind="output" path="build"/>
 </classpath>
