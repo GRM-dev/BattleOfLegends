@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="libs/Time/PatrykLib.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/lwjgl-2.9.1/jar/AppleJavaExtensions.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/lwjgl-2.9.1/jar/asm-debug-all.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/lwjgl-2.9.1/jar/jinput.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/lwjgl-2.9.1/jar/lwjgl_test.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/lwjgl-2.9.1/jar/lwjgl_util_applet.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/lwjgl-2.9.1/jar/lwjgl_util.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/lwjgl-2.9.1/jar/lwjgl-debug.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BattleOfLegends/libs/lwjgl-2.9.1/native/windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="libs/lwjgl-2.9.1/jar/lwjgl.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/lwjgl-2.9.1/jar/lzma.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/Slick2D/lib/slick.jar"/>
+	<classpathentry kind="output" path="out/production/BattleOfLegends"/>
+</classpath>
