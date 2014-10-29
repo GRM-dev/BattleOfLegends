@@ -1,11 +1,6 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-    }
 }
 
 apply plugin: 'java'
@@ -23,6 +18,7 @@ archivesBaseName = "BattleOfLegends"
 
 dependencies {
     testCompile 'junit:junit:4.11'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
 task writePom << {
