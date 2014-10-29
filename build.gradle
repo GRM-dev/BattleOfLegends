@@ -9,8 +9,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'pmd'
-apply plugin: "findbugs"
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
@@ -23,7 +21,11 @@ archivesBaseName = "BattleOfLegends"
 
 dependencies {
     testCompile 'junit:junit:4.11'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+  	compile files('libs/lwjgl.jar')
+  	compile files('libs/lwjgl_util.jar')
+  	compile files('libs/PatrykLib.jar')
+  	compile files('libs/slick.jar')
+  	compile files('libs/jinput.jar')
 }
 
 task writePom << {
@@ -39,34 +41,4 @@ task writePom << {
       }
     }
   }.writeTo("$projectDir/pom.xml")
-}
-
-findbugs {
-  ignoreFailures = true
-  sourceSets = [sourceSets.main]
-  reportsDir = file("$project.buildDir/reports/findbugs")
-  effort = "max"
-}
- 
-pmd {
-  ignoreFailures = true
-  sourceSets = [sourceSets.main]
-  reportsDir = file("$project.buildDir/reports/pmd")
-  ruleSets = [
-    "basic",
-    "braces"
-  ]
-}
-
-check << {
-  File outDir = new File('build/reports/pmd/')
-  outDir.mkdirs()
-  ant.taskdef(name: 'cpd', classname: 'net.sourceforge.pmd.cpd.CPDTask',
-    classpath: configurations.pmd.asPath)
-  ant.cpd(minimumTokenCount: '100', format: 'xml',
-    outputFile: new File(outDir , 'cpd.xml')) {
-    fileset(dir: "src/main/java") {
-      include(name: '**/*.java')
-    }
-  }
 }
