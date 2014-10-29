@@ -1,6 +1,5 @@
 package pl.grm.bol.engine.components;
 
-import pl.grm.bol.engine.core.Transform;
 import pl.grm.bol.engine.render.Material;
 import pl.grm.bol.engine.render.Mesh;
 import pl.grm.bol.engine.render.Shader;

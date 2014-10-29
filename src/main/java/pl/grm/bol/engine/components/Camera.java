@@ -2,7 +2,11 @@ package pl.grm.bol.engine.components;
 
 import org.lwjgl.input.Keyboard;
 
-import pl.grm.bol.engine.core.*;
+import pl.grm.bol.engine.core.Input;
+import pl.grm.bol.engine.core.Matrix4f;
+import pl.grm.bol.engine.core.Quaternion;
+import pl.grm.bol.engine.core.Vector2f;
+import pl.grm.bol.engine.core.Vector3f;
 import pl.grm.bol.engine.render.RenderingEngine;
 import pl.grm.bol.engine.render.Window;
 

@@ -21,6 +21,7 @@ public class BasicShader extends Shader {
 		addUniform("color");
 	}
 
+	@Override
 	public void updateUniforms(Transform transform, Material material) {
         Matrix4f worldMatrix = transform.getTransformation();
         Matrix4f projectedMatrix = getRenderingEngine().getMainCamera().getViewProjection().mul(worldMatrix);
