@@ -1,10 +1,10 @@
 package pl.grm.bol.engine.core;
 
+import java.util.ArrayList;
+
 import pl.grm.bol.engine.components.GameComponent;
 import pl.grm.bol.engine.render.RenderingEngine;
 import pl.grm.bol.engine.render.Shader;
-
-import java.util.ArrayList;
 
 public class GameObject {
     private ArrayList<GameObject>children;

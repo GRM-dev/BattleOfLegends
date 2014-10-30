@@ -1,13 +1,26 @@
 package pl.grm.bol.game;
 
-import pl.grm.bol.engine.components.*;
-import pl.grm.bol.engine.core.*;
-import pl.grm.bol.engine.render.*;
+import pl.grm.bol.engine.components.Camera;
+import pl.grm.bol.engine.components.DirectionalLight;
+import pl.grm.bol.engine.components.MeshRenderer;
+import pl.grm.bol.engine.components.PointLight;
+import pl.grm.bol.engine.components.SpotLight;
+import pl.grm.bol.engine.core.Game;
+import pl.grm.bol.engine.core.GameObject;
+import pl.grm.bol.engine.core.Quaternion;
+import pl.grm.bol.engine.core.Vector2f;
+import pl.grm.bol.engine.core.Vector3f;
+import pl.grm.bol.engine.render.Material;
+import pl.grm.bol.engine.render.Mesh;
+import pl.grm.bol.engine.render.Texture;
+import pl.grm.bol.engine.render.Vertex;
+import pl.grm.bol.engine.render.Window;
 
 public class TestGame extends Game {
     private GameObject planeObject;
 
-    public void init() {
+    @Override
+	public void init() {
         float filedDepth = 10.0f;
         float filedWidth = 10.0f;
 

@@ -1,14 +1,5 @@
 package pl.grm.bol.engine.render;
 
-import org.lwjgl.opengl.GL15;
-
-import pl.grm.bol.engine.core.Util;
-import pl.grm.bol.engine.core.Vector3f;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
-
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
@@ -22,6 +13,15 @@ import static org.lwjgl.opengl.GL15.glGenBuffers;
 import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
+import org.lwjgl.opengl.GL15;
+
+import pl.grm.bol.engine.core.Util;
+import pl.grm.bol.engine.core.Vector3f;
 
 public class Mesh {
 	private int vbo;
