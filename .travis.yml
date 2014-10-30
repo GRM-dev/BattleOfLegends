@@ -6,7 +6,7 @@ jdk:
 before_install:
  - gradle check
  
-script: gradle build -S
+script: gradle build
     
 branches:
   only:
