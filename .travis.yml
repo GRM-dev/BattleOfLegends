@@ -6,7 +6,6 @@ jdk:
 before_install:
  - gradle check
  
-
 install: gradle setupCIWorkspace -S
 script: gradle build -S
     
