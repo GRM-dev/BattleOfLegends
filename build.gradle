@@ -1,11 +1,19 @@
 apply plugin: 'java'
 apply plugin: 'pmd'
+apply plugin: 'application'
+
+version = "0.0.0"
+group= "pl.grm.bol"
+archivesBaseName = "BattleOfLegends"
+mainClassName = 'pl.grm.bol.game.BattleOfLegends'
 
 repositories {
     mavenCentral()
 }
 dependencies {
-    compile 'org.lwjgl.lwjgl:lwjgl:2.8.2'
+    compile group: 'com.google.guava', name: 'guava', version: 'latest.release'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: 'latest.release'
+    compile group: 'org.lwjgl.lwjgl', name: 'lwjgl', version: 'latest.release'
     compile files('libs/PatrykLib.jar')
     compile files('libs/slick.jar')
 }
