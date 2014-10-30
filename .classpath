@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="libs/natives-windows.jar"/>
 	<classpathentry kind="lib" path="libs/PatrykLib.jar"/>
 	<classpathentry kind="lib" path="libs/slick.jar"/>
+	<classpathentry kind="lib" path="libs/ini4j-0.5.2-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>
