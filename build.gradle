@@ -4,18 +4,27 @@ apply plugin: 'application'
 
 version = "0.0.0"
 group= "pl.grm.bol"
+description = 'BOL Game'
 archivesBaseName = "BattleOfLegends"
 mainClassName = 'pl.grm.bol.game.BattleOfLegends'
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
+
 dependencies {
     compile group: 'com.google.guava', name: 'guava', version: 'latest.release'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: 'latest.release'
     compile group: 'org.lwjgl.lwjgl', name: 'lwjgl', version: 'latest.release'
     compile files('libs/PatrykLib.jar')
     compile files('libs/slick.jar')
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'pl.grm.bol.game.BattleOfLegends'
+    }
 }
 
 platforms = ['windows', 'linux', 'osx']
