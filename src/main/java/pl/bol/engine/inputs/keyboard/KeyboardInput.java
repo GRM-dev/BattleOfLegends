@@ -10,10 +10,6 @@ public class KeyboardInput {
 	private static ArrayList<Integer> upKeys = new ArrayList<Integer>();
 	public static final int NUM_KEYCODES = 256;
 
-	public KeyboardInput() {
-
-	}
-
 	/**
 	 * Updating the key inputs
 	 */

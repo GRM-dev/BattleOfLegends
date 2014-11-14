@@ -5,33 +5,23 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import pl.bol.engine.inputs.keyboard.KeyboardInput;
+import pl.bol.engine.inputs.mouse.MouseInput;
 import pl.tm24.patrykp.biblioteki.patryklib.Czas;
 
 public class Window {
-	private int height;
-	private int width;
-	private boolean isGameRuning = false;
-	private Czas time = new Czas("Czas", 1);
-	private Game game;
+	private static int height;
+	private static int width;
+	private static boolean isGameRuning = false;
+	private static Czas time = new Czas("Czas", 1);
+	private static Game game;
 
-	/**
-	 * Constructor of window
-	 * 
-	 * @param width
-	 * @param height
-	 */
-	public Window(int width, int height) {
-		this.width = width;
-		this.height = height;
-		game = new Game();
+	public Window(Game game) {
+		this.game = game;
+		this.height = game.getHeightGameWindow();
+		this.width = game.getWidthGameWindow();
 	}
 
-	/**
-	 * Create new window with param of constructor and title
-	 * 
-	 * @param title
-	 */
-	public void createWindow(String title) {
+	public static void createWindow(String title) {
 		Display.setTitle(title);
 		try {
 			Display.setDisplayMode(new DisplayMode(width, height));
@@ -42,38 +32,27 @@ public class Window {
 		}
 	}
 
-	/**
-	 * Start the game
-	 */
-	public void startGame() {
+	public static void startGame() {
 		if (!isGameRuning)
 			isGameRuning = true;
 		loopGame();
 	}
 
-	/**
-	 * Stop the game
-	 */
-	public void stopGame() {
+	public static void stopGame() {
 		if (isGameRuning)
 			isGameRuning = false;
 	}
 
-	/**
-	 * Destroy the game window
-	 */
-	private void destroyWindow() {
+	private static void destroyWindow() {
 		Display.destroy();
 		System.exit(0);
 	}
 
-	/**
-	 * Game loop
-	 */
-	private void loopGame() {
+	private static void loopGame() {
 		while (!Display.isCloseRequested() && isGameRuning) {
 			time.aktualizuj();
 			KeyboardInput.update();
+			MouseInput.update();
 
 			game.input();
 			game.render();

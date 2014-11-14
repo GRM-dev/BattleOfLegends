@@ -1,10 +1,17 @@
 package pl.bol.game;
 
+import pl.bol.engine.graphic.RenderUtil;
+
 public class BattleOfLegends {
+	private static Game game;
+
 	public static void main(String[] args) {
-		Window window = new Window(Game.WIDTH_GAME_WINDOW,
-				Game.HEIGHT_GAME_WINDOW);
-		window.createWindow(Game.TITLE_GAME_WINDOW);
+		game = new Game();
+
+		Window window = new Window(game);
+
+		window.createWindow(game.getTitleGameWindow());
+		RenderUtil.initGraphic();
 		window.startGame();
 	}
 }
