@@ -2,14 +2,21 @@ package pl.bol.game;
 
 import org.lwjgl.input.Keyboard;
 
+import pl.bol.devwindow.DevWindow;
 import pl.bol.engine.graphic.RenderUtil;
 import pl.bol.engine.inputs.keyboard.KeyboardInput;
 import pl.bol.engine.inputs.mouse.MouseInput;
+import pl.bol.game.filehandler.ResourcesLoader;
 
 public class Game {
-	private final int WIDTH_GAME_WINDOW = 800;
-	private final int HEIGHT_GAME_WINDOW = 600;
-	private final String TITLE_GAME_WINDOW = "Battle of Legends";
+	private DevWindow devWindow;
+	private Window window;
+
+	public void initGame() {
+		new ResourcesLoader(this);
+		ResourcesLoader.getConfig();
+		ResourcesLoader.setGameIcon();
+	}
 
 	public void input() {
 		if (KeyboardInput.getKeyDown(Keyboard.KEY_W))
@@ -31,15 +38,19 @@ public class Game {
 		RenderUtil.clearScreen();
 	}
 
-	public int getWidthGameWindow() {
-		return WIDTH_GAME_WINDOW;
+	public DevWindow getDevWindow() {
+		return devWindow;
 	}
 
-	public int getHeightGameWindow() {
-		return HEIGHT_GAME_WINDOW;
+	public void setDevWindow(DevWindow devWindow) {
+		this.devWindow = devWindow;
 	}
 
-	public String getTitleGameWindow() {
-		return TITLE_GAME_WINDOW;
+	public Window getWindow() {
+		return window;
+	}
+
+	public void setWindow(Window window) {
+		this.window = window;
 	}
 }

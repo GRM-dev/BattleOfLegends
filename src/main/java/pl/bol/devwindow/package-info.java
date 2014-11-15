@@ -2,4 +2,4 @@
  * @author Bolo
  *
  */
-package pl.bol.game.logger;
+package pl.bol.devwindow;

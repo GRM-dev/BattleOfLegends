@@ -1,5 +1,6 @@
 package pl.bol.game;
 
+import pl.bol.devwindow.DevWindow;
 import pl.bol.engine.graphic.RenderUtil;
 
 public class BattleOfLegends {
@@ -9,9 +10,13 @@ public class BattleOfLegends {
 		game = new Game();
 
 		Window window = new Window(game);
+		DevWindow devWindow = new DevWindow(game);
 
-		window.createWindow(game.getTitleGameWindow());
+		game.initGame();
+
+		window.createWindow(game.getWindow().getTitleGameWindow());
 		RenderUtil.initGraphic();
+		DevWindow.createDevWindow(game.getDevWindow().getTitleDevWindow());
 		window.startGame();
 	}
 }

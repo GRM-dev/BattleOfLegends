@@ -10,9 +10,6 @@ public class KeyboardInput {
 	private static ArrayList<Integer> upKeys = new ArrayList<Integer>();
 	public static final int NUM_KEYCODES = 256;
 
-	/**
-	 * Updating the key inputs
-	 */
 	public static void update() {
 		upKeys.clear();
 		for (int i = 0; i < NUM_KEYCODES; i++) {
@@ -36,22 +33,10 @@ public class KeyboardInput {
 		}
 	}
 
-	/**
-	 * Get key press
-	 * 
-	 * @param keyCode
-	 * @return Keyboard.isKeyDown
-	 */
 	public static boolean getKey(int keyCode) {
 		return Keyboard.isKeyDown(keyCode);
 	}
 
-	/**
-	 * Get key pressed
-	 * 
-	 * @param keyCode
-	 * @return Keyboard.isKeyDown
-	 */
 	public static boolean getKeyDown(int keyCode) {
 		if (downKeys.contains(keyCode))
 			return true;
@@ -59,12 +44,6 @@ public class KeyboardInput {
 		return false;
 	}
 
-	/**
-	 * Get key not pressed
-	 * 
-	 * @param keyCode
-	 * @return Keyboard.isKeyUp
-	 */
 	public static boolean getKeyUp(int keyCode) {
 		if (upKeys.contains(keyCode))
 			return true;

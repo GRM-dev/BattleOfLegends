@@ -12,9 +12,6 @@ public class MouseInput {
 	private static ArrayList<Integer> upButtons = new ArrayList<Integer>();
 	public static final int NUM_MOUSECODE = 5;
 
-	/**
-	 * Updating the key inputs
-	 */
 	public static void update() {
 		upButtons.clear();
 		for (int i = 0; i < NUM_MOUSECODE; i++) {
@@ -38,22 +35,10 @@ public class MouseInput {
 		}
 	}
 
-	/**
-	 * Get button press
-	 * 
-	 * @param buttonCode
-	 * @return Mouse.isButtonDown
-	 */
 	public static boolean getButton(int buttonKey) {
 		return Mouse.isButtonDown(buttonKey);
 	}
 
-	/**
-	 * Get button pressed
-	 * 
-	 * @param buttonCode
-	 * @return Mouse.isButtonDown
-	 */
 	public static boolean getButtonDown(int buttonKey) {
 		if (downButtons.contains(buttonKey))
 			return true;
@@ -61,12 +46,6 @@ public class MouseInput {
 		return false;
 	}
 
-	/**
-	 * Get button not pressed
-	 * 
-	 * @param buttonCode
-	 * @return Mouse.isKeyUp
-	 */
 	public static boolean getButtonUp(int buttonKey) {
 		if (upButtons.contains(buttonKey))
 			return true;

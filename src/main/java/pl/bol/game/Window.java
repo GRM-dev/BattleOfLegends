@@ -9,22 +9,22 @@ import pl.bol.engine.inputs.mouse.MouseInput;
 import pl.tm24.patrykp.biblioteki.patryklib.Czas;
 
 public class Window {
-	private static int height;
-	private static int width;
 	private static boolean isGameRuning = false;
 	private static Czas time = new Czas("Czas", 1);
 	private static Game game;
+	private final static int WIDTH_GAME_WINDOW = 800;
+	private final static int HEIGHT_GAME_WINDOW = 600;
+	private final static String TITLE_GAME_WINDOW = "Battle of Legends";
 
 	public Window(Game game) {
 		this.game = game;
-		this.height = game.getHeightGameWindow();
-		this.width = game.getWidthGameWindow();
 	}
 
 	public static void createWindow(String title) {
 		Display.setTitle(title);
 		try {
-			Display.setDisplayMode(new DisplayMode(width, height));
+			Display.setDisplayMode(new DisplayMode(getWidthDevWindow(),
+					getHeightGameWindow()));
 			Display.create();
 		} catch (LWJGLException e) {
 			// TODO Auto-generated catch block
@@ -61,5 +61,17 @@ public class Window {
 		}
 
 		destroyWindow();
+	}
+
+	public static int getWidthDevWindow() {
+		return WIDTH_GAME_WINDOW;
+	}
+
+	public static int getHeightGameWindow() {
+		return HEIGHT_GAME_WINDOW;
+	}
+
+	public static String getTitleGameWindow() {
+		return TITLE_GAME_WINDOW;
 	}
 }
