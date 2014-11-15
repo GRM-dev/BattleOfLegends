@@ -1,54 +1,58 @@
 package pl.bol.game;
 
+import java.util.logging.Level;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import pl.bol.engine.inputs.keyboard.KeyboardInput;
 import pl.bol.engine.inputs.mouse.MouseInput;
+import pl.bol.game.filehandler.BLog;
 import pl.tm24.patrykp.biblioteki.patryklib.Czas;
 
 public class Window {
-	private static boolean isGameRuning = false;
-	private static Czas time = new Czas("Czas", 1);
-	private static Game game;
-	private final static int WIDTH_GAME_WINDOW = 800;
-	private final static int HEIGHT_GAME_WINDOW = 600;
-	private final static String TITLE_GAME_WINDOW = "Battle of Legends";
+	private boolean isGameRuning = false;
+	private Czas time = new Czas("Czas", 1);
+	private Game game;
+	private BLog bLog;
+	private static int WIDTH_GAME_WINDOW = 800;
+	private static int HEIGHT_GAME_WINDOW = 600;
+	private static String TITLE_GAME_WINDOW = "Battle of Legends";
 
 	public Window(Game game) {
 		this.game = game;
+		bLog = new BLog();
 	}
 
-	public static void createWindow(String title) {
+	public void createWindow(String title) {
 		Display.setTitle(title);
 		try {
 			Display.setDisplayMode(new DisplayMode(getWidthDevWindow(),
 					getHeightGameWindow()));
 			Display.create();
 		} catch (LWJGLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			bLog.log(Level.SEVERE, e.toString(), e);
 		}
 	}
 
-	public static void startGame() {
+	public void startGame() {
 		if (!isGameRuning)
 			isGameRuning = true;
 		loopGame();
 	}
 
-	public static void stopGame() {
+	public void stopGame() {
 		if (isGameRuning)
 			isGameRuning = false;
 	}
 
-	private static void destroyWindow() {
+	private void destroyWindow() {
 		Display.destroy();
 		System.exit(0);
 	}
 
-	private static void loopGame() {
+	private void loopGame() {
 		while (!Display.isCloseRequested() && isGameRuning) {
 			time.aktualizuj();
 			KeyboardInput.update();
@@ -63,15 +67,15 @@ public class Window {
 		destroyWindow();
 	}
 
-	public static int getWidthDevWindow() {
+	public int getWidthDevWindow() {
 		return WIDTH_GAME_WINDOW;
 	}
 
-	public static int getHeightGameWindow() {
+	public int getHeightGameWindow() {
 		return HEIGHT_GAME_WINDOW;
 	}
 
-	public static String getTitleGameWindow() {
+	public String getTitleGameWindow() {
 		return TITLE_GAME_WINDOW;
 	}
 }

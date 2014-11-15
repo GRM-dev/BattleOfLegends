@@ -5,18 +5,20 @@ import pl.bol.engine.graphic.RenderUtil;
 
 public class BattleOfLegends {
 	private static Game game;
+	private static Window window;
+	private static DevWindow devWindow;
 
 	public static void main(String[] args) {
 		game = new Game();
-
-		Window window = new Window(game);
-		DevWindow devWindow = new DevWindow(game);
+		window = new Window(game);
+		devWindow = new DevWindow(game);
 
 		game.initGame();
-
+		// devWindow.createDevWindow(game.getDevWindow().getTitleDevWindow());
+		devWindow.createDevWindow();
 		window.createWindow(game.getWindow().getTitleGameWindow());
+
 		RenderUtil.initGraphic();
-		DevWindow.createDevWindow(game.getDevWindow().getTitleDevWindow());
 		window.startGame();
 	}
 }

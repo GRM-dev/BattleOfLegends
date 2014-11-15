@@ -14,7 +14,7 @@ public class BLog {
 	public BLog() {
 		Logger loggerR = null;
 		try {
-			loggerR = FileOperation.setupLauncherLogger(ResourcesLoader.class);
+			loggerR = FileOperation.setupLogger(ResourcesLoader.class);
 		} catch (ClassNotFoundException | IllegalArgumentException
 				| IllegalAccessException | NoSuchFieldException e) {
 			e.printStackTrace();
