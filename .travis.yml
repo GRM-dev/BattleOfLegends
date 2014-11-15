@@ -4,10 +4,10 @@ jdk:
   - oraclejdk7
 
 before_install:
- - gradle check
+ - chmod +x gradlew
  
-install: gradle jar
-script: gradle build
+install: ./gradlew execJar
+script: ./gradlew build
     
 branches:
   only:
