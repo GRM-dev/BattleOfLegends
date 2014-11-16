@@ -35,7 +35,6 @@ dependencies {
     compile group: 'com.typesafe.slick', name: 'slick_2.11', version: '2.1.0'       
     compile files('libs/BoL-Launcher_Lib-0.0.0.jar')
     compile files('libs/TimeLib.jar')
-    compile files('libs/slick.jar')
 }
 
 jar {
