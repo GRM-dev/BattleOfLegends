@@ -28,10 +28,11 @@ dependencies {
     compile group: 'com.google.guava', name: 'guava', version: '18.0'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.3.2'
     compile group: 'org.lwjgl.lwjgl', name: 'lwjgl', version: '2.9.1'
-    compile ('org.ini4j:ini4j:0.5.2')
-    compile ('net.java.jinput:jinput:2.0.6')
-    compile('org.jcraft:jorbis:0.0.17')
-    compile('com.typesafe.slick:slick_2.11:2.1.0')       
+    compile group: 'org.lwjgl.lwjgl', name: 'lwjgl_util', version: '2.9.0'
+    compile group: 'org.ini4j', name: 'ini4j', version: '0.5.2'
+    compile group: 'net.java.jinput', name: 'jinput', version: '2.0.6'
+    compile group: 'org.jcraft', name: 'jorbis', version: "0.0.17"
+    compile group: 'com.typesafe.slick', name: 'slick_2.11', version: '2.1.0'       
     compile files('libs/BoL-Launcher_Lib-0.0.0.jar')
     compile files('libs/TimeLib.jar')
     compile files('libs/slick.jar')
@@ -49,28 +50,8 @@ task execJar(type: OneJar) {
     archiveName = archivesBaseName+"-"+version+"-SNAPSHOT.jar"
 }
 
-platforms = ['windows', 'linux', 'osx']
-platforms.each { platform ->
-    task "${platform}Natives" {
-        outputDir = "$buildDir/natives/$platform"
-        inputs.files(configurations.compile)
-        outputs.dir(outputDir)
-        doLast {
-            copy {
-                def artifacts = configurations.compile.resolvedConfiguration.resolvedArtifacts
-                    .findAll { it.classifier == "natives-$platform" }
-                artifacts.each { 
-                    from zipTree(it.file)
-                }            
-                into outputDir
-            }
-        }
-    }
-}
-
-task natives {
-    description "Copies native libraries to an appropriate directory."
-    dependsOn platforms.collect { "${it}Natives" }.findAll { tasks[it] }
+run {
+     systemProperty 'java.library.path', file( 'libs/natives/windows' )
 }
 
 task writePom << {
