@@ -10,15 +10,15 @@ import org.lwjgl.opengl.Display;
 import pl.grm.bol.engine.graphic.RenderUtil;
 import pl.grm.bol.engine.inputs.keyboard.KeyboardInput;
 import pl.grm.bol.engine.inputs.mouse.MouseInput;
-import pl.grm.bol.game.filehandler.BLog;
-import pl.grm.bol.game.filehandler.ResourcesLoader;
+import pl.grm.bol.filehandler.BLog;
+import pl.grm.bol.filehandler.ResourcesLoader;
 import pl.grm.bol.lib.FileOperation;
 
-public class Presenter {
+public class GamePresenter {
 	private BLog bLog;
 	private GameWindow gameWindow;
 
-	public Presenter() {
+	public GamePresenter() {
 		bLog = new BLog();
 		gameWindow = new GameWindow(this);
 	}

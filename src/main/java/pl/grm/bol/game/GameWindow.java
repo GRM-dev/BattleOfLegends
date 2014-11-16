@@ -13,13 +13,13 @@ import pl.tm24.patrykp.biblioteki.patryklib.Czas;
 public class GameWindow {
 	private boolean isGameRuning = false;
 	private Czas time;
-	private Presenter presenter;
+	private GamePresenter gamePresenter;
 	private int WIDTH_GAME_WINDOW = 800;
 	private int HEIGHT_GAME_WINDOW = 600;
 	private String TITLE_GAME_WINDOW = "Battle of Legends";
 
-	public GameWindow(Presenter presenter) {
-		this.presenter = presenter;
+	public GameWindow(GamePresenter gamePresenter) {
+		this.gamePresenter = gamePresenter;
 		time = new Czas("Czas", 1);
 	}
 
@@ -30,7 +30,7 @@ public class GameWindow {
 					getHeightGameWindow()));
 			Display.create();
 		} catch (LWJGLException e) {
-			presenter.getbLog().log(Level.SEVERE, e.toString(), e);
+			gamePresenter.getbLog().log(Level.SEVERE, e.toString(), e);
 		}
 	}
 
@@ -56,8 +56,8 @@ public class GameWindow {
 			KeyboardInput.update();
 			MouseInput.update();
 
-			presenter.input();
-			presenter.render();
+			gamePresenter.input();
+			gamePresenter.render();
 
 			Display.update();
 		}

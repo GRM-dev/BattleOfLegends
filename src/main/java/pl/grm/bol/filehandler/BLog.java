@@ -1,4 +1,4 @@
-package pl.grm.bol.game.filehandler;
+package pl.grm.bol.filehandler;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
