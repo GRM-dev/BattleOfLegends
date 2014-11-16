@@ -28,7 +28,12 @@ dependencies {
     compile group: 'com.google.guava', name: 'guava', version: '18.0'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.3.2'
     compile group: 'org.lwjgl.lwjgl', name: 'lwjgl', version: '2.9.1'
-    compile files('libs/PatrykLib.jar')
+    compile ('org.ini4j:ini4j:0.5.2')
+    compile ('net.java.jinput:jinput:2.0.6')
+    compile('org.jcraft:jorbis:0.0.17')
+    compile('com.typesafe.slick:slick_2.11:2.1.0')       
+    compile files('libs/BoL-Launcher_Lib-0.0.0.jar')
+    compile files('libs/TimeLib.jar')
     compile files('libs/slick.jar')
 }
 
