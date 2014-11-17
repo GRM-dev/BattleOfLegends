@@ -47,11 +47,11 @@ jar {
 task execJar(type: OneJar) {
 	mainClass = mainClassName
     archiveName = archivesBaseName+"-"+version+"-SNAPSHOT.jar"
-    binLib=files("/libs/native/windows/lwjgl.dll","/libs/native/windows/lwjgl64.dll")
+    binLib=files("libs/native/windows/lwjgl.dll","libs/native/windows/lwjgl64.dll")
 }
 
 run {
-     systemProperty 'java.library.path', file( '/libs/native/windows' )
+     systemProperty 'java.library.path', file( 'libs/native/windows' )
 }
  
 pmd {
