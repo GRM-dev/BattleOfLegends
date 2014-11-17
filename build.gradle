@@ -41,16 +41,17 @@ jar {
     manifest {
         attributes 'Main-Class': 'pl.grm.bol.game.BattleOfLegends'
       	attributes "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
-    }
+      	    }
 }
 
 task execJar(type: OneJar) {
-    mainClass = mainClassName
+	mainClass = mainClassName
     archiveName = archivesBaseName+"-"+version+"-SNAPSHOT.jar"
+    binLib=files("/libs/native/windows/lwjgl.dll","/libs/native/windows/lwjgl64.dll")
 }
 
 run {
-     systemProperty 'java.library.path', file( 'libs/natives/windows' )
+     systemProperty 'java.library.path', file( '/libs/native/windows' )
 }
  
 pmd {
