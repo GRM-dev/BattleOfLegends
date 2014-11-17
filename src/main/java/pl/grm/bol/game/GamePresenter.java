@@ -25,7 +25,7 @@ public class GamePresenter {
 	
 	public void initGame() {
 		try {
-			FileOperation.readConfigFile(ResourcesLoader.class);
+			FileOperation.readConfigFile("");
 		}
 		catch (IllegalArgumentException e) {
 			bLog.log(Level.SEVERE, e.toString(), e);
