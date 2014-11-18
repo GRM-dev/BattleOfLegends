@@ -15,12 +15,15 @@ import pl.grm.bol.lib.BLog;
 import pl.grm.bol.lib.FileOperation;
 
 public class GamePresenter {
-	private BLog		bLog;
+	private BLog		logger;
 	private GameWindow	gameWindow;
 	
-	public GamePresenter() {
-		bLog = new BLog("game.ini");
+	public GamePresenter(boolean server) {
+		logger = new BLog("game.ini");
 		gameWindow = new GameWindow(this);
+		if (server) {
+			// TODO server impl
+		}
 	}
 	
 	public void initGame() {
@@ -28,10 +31,10 @@ public class GamePresenter {
 			FileOperation.readConfigFile("");
 		}
 		catch (IllegalArgumentException e) {
-			bLog.log(Level.SEVERE, e.toString(), e);
+			logger.log(Level.SEVERE, e.toString(), e);
 		}
 		catch (SecurityException e) {
-			bLog.log(Level.SEVERE, e.toString(), e);
+			logger.log(Level.SEVERE, e.toString(), e);
 		}
 		try {
 			ByteBuffer[] icons = new ByteBuffer[2];
@@ -40,7 +43,7 @@ public class GamePresenter {
 			Display.setIcon(icons);
 		}
 		catch (IOException ex) {
-			bLog.log(Level.SEVERE, ex.toString(), ex);
+			logger.log(Level.SEVERE, ex.toString(), ex);
 		}
 	}
 	
@@ -73,10 +76,10 @@ public class GamePresenter {
 	}
 	
 	public BLog getbLog() {
-		return bLog;
+		return logger;
 	}
 	
 	public void setbLog(BLog bLog) {
-		this.bLog = bLog;
+		this.logger = bLog;
 	}
 }

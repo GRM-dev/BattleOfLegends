@@ -16,7 +16,7 @@ public class ResourcesLoader {
 	public static final String	LOG_FILE_NAME	= "game.log";
 	
 	public static ByteBuffer loadIcon(String filename, int width, int height) throws IOException {
-		BufferedImage image = ImageIO.read(new File(PATH + "icons/" + filename)); // load
+		BufferedImage image = ImageIO.read(new File(PATH + "icons\\" + filename)); // load
 		
 		byte[] imageBytes = new byte[width * height * 4];
 		for (int i = 0; i < height; i++) {
