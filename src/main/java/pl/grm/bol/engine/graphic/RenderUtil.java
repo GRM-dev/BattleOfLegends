@@ -14,12 +14,12 @@ import static org.lwjgl.opengl.GL11.glFrontFace;
 import static org.lwjgl.opengl.GL30.GL_FRAMEBUFFER_SRGB;
 
 public class RenderUtil {
-	public static void clearScreen() {
+	public void clearScreen() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	public static void initGraphic() {
-		glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+	public void initGraphic() {
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 		glFrontFace(GL_CW);
 		glCullFace(GL_BACK);

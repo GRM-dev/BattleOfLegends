@@ -1,85 +1,93 @@
 package pl.grm.bol.game;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
+import static org.lwjgl.opengl.GL11.glColor3f;
+import static org.lwjgl.opengl.GL11.glRectf;
+
 import java.util.logging.Level;
 
-import org.lwjgl.input.Keyboard;
+import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
 
+import pl.grm.bol.engine.graphic.Mesh;
 import pl.grm.bol.engine.graphic.RenderUtil;
-import pl.grm.bol.engine.inputs.keyboard.KeyboardInput;
-import pl.grm.bol.engine.inputs.mouse.MouseInput;
-import pl.grm.bol.filehandler.ResourcesLoader;
+import pl.grm.bol.engine.graphic.Vector3f;
+import pl.grm.bol.engine.graphic.Vertex;
+import pl.grm.bol.engine.graphic.rendering.states.StateOfGame;
 import pl.grm.bol.lib.BLog;
-import pl.grm.bol.lib.FileOperation;
 
 public class GamePresenter {
-	private BLog		logger;
-	private GameWindow	gameWindow;
-	
-	public GamePresenter(boolean server) {
-		logger = new BLog("game.ini");
-		gameWindow = new GameWindow(this);
-		if (server) {
-			// TODO server impl
-		}
-	}
-	
-	public void initGame() {
-		try {
-			FileOperation.readConfigFile("");
-		}
-		catch (IllegalArgumentException e) {
-			logger.log(Level.SEVERE, e.toString(), e);
-		}
-		catch (SecurityException e) {
-			logger.log(Level.SEVERE, e.toString(), e);
-		}
-		try {
-			ByteBuffer[] icons = new ByteBuffer[2];
-			icons[0] = ResourcesLoader.loadIcon("gameIcon_16.png", 16, 16);
-			icons[1] = ResourcesLoader.loadIcon("gameIcon_32.png", 32, 32);
-			Display.setIcon(icons);
-		}
-		catch (IOException ex) {
-			logger.log(Level.SEVERE, ex.toString(), ex);
-		}
-	}
-	
-	public void input() {
-		if (KeyboardInput.getKeyDown(Keyboard.KEY_W))
-			System.out.println("W");
-		if (KeyboardInput.getKeyDown(Keyboard.KEY_S))
-			System.out.println("S");
-		if (KeyboardInput.getKeyDown(Keyboard.KEY_A))
-			System.out.println("A");
-		if (KeyboardInput.getKeyDown(Keyboard.KEY_D))
-			System.out.println("D");
-		
-		if (MouseInput.getButtonDown(0))
-			System.out.println("Selected at: " + MouseInput.getMousePosition());
-		if (MouseInput.getButtonDown(1))
-			gameWindow.stopGame();
-	}
-	
-	public void render() {
-		RenderUtil.clearScreen();
-	}
-	
-	public GameWindow getGameWindow() {
-		return gameWindow;
-	}
-	
-	public void setGameWindow(GameWindow gameWindow) {
-		this.gameWindow = gameWindow;
-	}
-	
-	public BLog getbLog() {
-		return logger;
-	}
-	
-	public void setbLog(BLog bLog) {
+	private GameController gameController;
+	private BLog logger;
+	private static int WIDTH_GAME_WINDOW = 800;
+	private static int HEIGHT_GAME_WINDOW = 600;
+	private static String TITLE_GAME_WINDOW = "Battle of Legends";
+	private RenderUtil renderUtil;
+	private Mesh mesh;
+
+	public GamePresenter(BLog bLog, GameController gameController) {
 		this.logger = bLog;
+		this.gameController = gameController;
+	}
+
+	public void createMesh() {
+		mesh = new Mesh();
+		Vertex[] data = new Vertex[] { new Vertex(new Vector3f(-1, -1, 0)),
+				new Vertex(new Vector3f(-1, 1, 0)),
+				new Vertex(new Vector3f(0, 1, 0)) };
+		mesh.addVertices(data);
+	}
+
+	public void createWindow() {
+		Display.setTitle(TITLE_GAME_WINDOW);
+		try {
+			Display.setDisplayMode(new DisplayMode(WIDTH_GAME_WINDOW,
+					HEIGHT_GAME_WINDOW));
+			Display.create();
+		} catch (LWJGLException e) {
+			logger.log(Level.SEVERE, e.toString(), e);
+		}
+	}
+
+	public RenderUtil getRenderUtil() {
+		return renderUtil;
+	}
+
+	public void renderState(StateOfGame state) {
+		switch (state) {
+		case LOADING_GAME:
+			glColor3f(1.0f, 0f, 1.0f);
+			glRectf(-600, -800, 600, 800);
+			break;
+		case GAME_MENU:
+			glColor3f(1.0f, 0f, 0f);
+			glRectf(-600, -800, 600, 800);
+			break;
+		case GAME_RUNNING:
+
+			break;
+		case GAME_STOPPED:
+
+			break;
+		default:
+			System.out.println("ERROR");
+			break;
+		}
+	}
+
+	public void setBLog(BLog bLog) {
+		this.logger = bLog;
+	}
+
+	public void setGameController(GameController gameController) {
+		this.gameController = gameController;
+	}
+
+	public void setRenderUtil(RenderUtil renderUtil) {
+		this.renderUtil = renderUtil;
+	}
+
+	public void stopGame() {
+		gameController.stopGame();
 	}
 }
