@@ -9,10 +9,6 @@ import pl.grm.bol.game.*;
 public class StateUtil implements GameUtil {
 
 	private GamePresenter gamePresenter;
-	private GameLoading gameLoading;
-	private GameMenu gameMenu;
-	private GamePaused gamePaused;
-	private GameRunning gameRunning;
 
 	public StateUtil(GamePresenter gamePresenter) {
 		this.gamePresenter = gamePresenter;
@@ -32,18 +28,7 @@ public class StateUtil implements GameUtil {
 
 	@Override
 	public void init() {
-		gameLoading = (GameLoading) StateOfGame.GAME_LOADING.getState();
-		gameLoading.setPresenter(gamePresenter);
-		gameLoading.setUtils(this);
-		gameRunning = (GameRunning) StateOfGame.GAME_RUNNING.getState();
-		gameRunning.setPresenter(gamePresenter);
-		gameRunning.setUtils(this);
-		gamePaused = (GamePaused) StateOfGame.GAME_STOPPED.getState();
-		gamePaused.setPresenter(gamePresenter);
-		gamePaused.setUtils(this);
-		gameMenu = (GameMenu) StateOfGame.GAME_MENU.getState();
-		gameMenu.setPresenter(gamePresenter);
-		gameMenu.setUtils(this);
+
 	}
 
 	public void setColor3f(ColorLevel level, Vector3f color) {

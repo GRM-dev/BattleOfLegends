@@ -10,6 +10,7 @@ import org.lwjgl.opengl.*;
 import pl.grm.bol.engine.graphic.rendering.states.*;
 import pl.grm.bol.lib.*;
 import pl.tm24.patrykp.biblioteki.patryklib.*;
+import scala.collection.mutable.*;
 
 public class GameController implements GameUtil {
 
@@ -19,6 +20,8 @@ public class GameController implements GameUtil {
 	private Czas time;
 	private BLog logger;
 	private static final long REFRESH_INTERVAL_TIME = 17;
+	private static HashMap<String, IStateOfGame> states;
+	private StateOfGame state;
 
 	@Override
 	public void render() {
@@ -161,7 +164,19 @@ public class GameController implements GameUtil {
 		this.logger = logger;
 	}
 
-	private void setStateOfGame(StateOfGame state) {
-		gamePresenter.setStateOfGame(state);
+	public void setStateOfGame(StateOfGame state) {
+		this.state = state;
+	}
+
+	public StateOfGame getStateOfGame() {
+		return state;
+	}
+
+	public static HashMap<String, IStateOfGame> getStates() {
+		return states;
+	}
+
+	public static void setStates(HashMap<String, IStateOfGame> states) {
+		GameController.states = states;
 	}
 }

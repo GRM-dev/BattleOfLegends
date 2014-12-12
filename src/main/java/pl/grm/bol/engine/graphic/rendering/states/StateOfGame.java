@@ -1,5 +1,8 @@
 package pl.grm.bol.engine.graphic.rendering.states;
 
+import pl.grm.bol.game.*;
+import scala.collection.mutable.*;
+
 public enum StateOfGame {
 	GAME_LOADING(0, "Loading game", GameLoading.class),
 	GAME_RUNNING(1, "Running game", GameRunning.class),
@@ -16,7 +19,7 @@ public enum StateOfGame {
 		this.state = state;
 	}
 
-	public IStateOfGame getState() {
+	public IStateOfGame createState() {
 		try {
 			return state.newInstance();
 		}
@@ -27,5 +30,24 @@ public enum StateOfGame {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public static IStateOfGame getIState(StateOfGame stateOfGame) {
+		HashMap<String, IStateOfGame> states = GameController.getStates();
+		if (states.contains(stateOfGame.getName())) {
+			IStateOfGame iStateOfGame = (IStateOfGame) states.get(stateOfGame
+					.getName());
+			return iStateOfGame;
+		} else
+			return null;
+
 	}
 }

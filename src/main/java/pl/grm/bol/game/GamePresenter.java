@@ -13,12 +13,11 @@ public class GamePresenter implements GameUtil {
 
 	private GameController gameController;
 	private BLog logger;
-	private static int WIDTH_GAME_WINDOW = 1900;
-	private static int HEIGHT_GAME_WINDOW = 1080;
+	private static int WIDTH_GAME_WINDOW = 800;
+	private static int HEIGHT_GAME_WINDOW = 600;
 	private static String TITLE_GAME_WINDOW = "Battle of Legends";
 	private StateUtil stateUtil;
 	private RenderUtil renderUtil;
-	private StateOfGame stateOfGame;
 
 	public GamePresenter(BLog bLog, GameController gameController) {
 		this.logger = bLog;
@@ -27,7 +26,7 @@ public class GamePresenter implements GameUtil {
 
 	@Override
 	public void render() {
-		stateOfGame.getState().render();
+		StateOfGame.getIState(gameController.getStateOfGame()).render();
 	}
 
 	@Override
@@ -38,8 +37,7 @@ public class GamePresenter implements GameUtil {
 
 	@Override
 	public void init() {
-		stateUtil = new StateUtil(this);
-		stateUtil.init();
+
 	}
 
 	public void createWindow() {
@@ -87,10 +85,10 @@ public class GamePresenter implements GameUtil {
 	}
 
 	public StateOfGame getStateOfGame() {
-		return stateOfGame;
+		return gameController.getStateOfGame();
 	}
 
-	public void setStateOfGame(StateOfGame stateOfGame) {
-		this.stateOfGame = stateOfGame;
+	public GameController getGameController() {
+		return gameController;
 	}
 }
