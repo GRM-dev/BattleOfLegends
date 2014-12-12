@@ -1,34 +1,66 @@
 package pl.grm.bol.game;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.logging.Level;
+import java.io.*;
+import java.nio.*;
+import java.util.logging.*;
 
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.Display;
+import org.lwjgl.input.*;
+import org.lwjgl.opengl.*;
 
-import pl.grm.bol.engine.graphic.rendering.states.StateOfGame;
-import pl.grm.bol.engine.inputs.Input;
-import pl.grm.bol.filehandler.ResourcesLoader;
-import pl.grm.bol.lib.BLog;
-import pl.grm.bol.lib.FileOperation;
-import pl.tm24.patrykp.biblioteki.patryklib.Czas;
+import pl.grm.bol.engine.graphic.rendering.states.*;
+import pl.grm.bol.lib.*;
+import pl.tm24.patrykp.biblioteki.patryklib.*;
 
-public class GameController {
+public class GameController implements GameUtil {
+
 	private boolean isGameRuning = false;
 	private GamePresenter gamePresenter;
 	private Input input;
 	private Czas time;
-	private StateOfGame stateOfGame;
 	private BLog logger;
 	private static final long REFRESH_INTERVAL_TIME = 17;
 
-	public void initGame() {
+	@Override
+	public void render() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void input() {
+		if (input.getKeyDown(Keyboard.KEY_W)) {
+			System.out.println("W");
+			setStateOfGame(StateOfGame.GAME_MENU);
+		}
+		if (input.getKeyDown(Keyboard.KEY_S)) {
+			System.out.println("S");
+			setStateOfGame(StateOfGame.GAME_LOADING);
+		}
+		if (input.getKeyDown(Keyboard.KEY_A)) {
+			System.out.println("A");
+			setStateOfGame(StateOfGame.GAME_RUNNING);
+		}
+		if (input.getKeyDown(Keyboard.KEY_D)) {
+			System.out.println("D");
+			setStateOfGame(StateOfGame.GAME_STOPPED);
+		}
+
+		if (input.getButtonDown(0))
+			System.out.println("Selected at: " + input.getMousePosition());
+		if (input.getButtonDown(1))
+			stopGame();
+		input.update();
+	}
+
+	@Override
+	public void init() {
 		try {
 			FileOperation.readConfigFile("");
-		} catch (IllegalArgumentException e) {
+		}
+		catch (IllegalArgumentException e) {
 			logger.log(Level.SEVERE, e.toString(), e);
-		} catch (SecurityException e) {
+		}
+		catch (SecurityException e) {
 			logger.log(Level.SEVERE, e.toString(), e);
 		}
 
@@ -37,7 +69,8 @@ public class GameController {
 			icons[0] = ResourcesLoader.loadIcon("gameIcon_16.png", 16, 16);
 			icons[1] = ResourcesLoader.loadIcon("gameIcon_32.png", 32, 32);
 			Display.setIcon(icons);
-		} catch (IOException ex) {
+		}
+		catch (IOException ex) {
 			logger.log(Level.SEVERE, ex.toString(), ex);
 		}
 	}
@@ -46,6 +79,7 @@ public class GameController {
 		if (!isGameRuning()) {
 			setGameRuning(true);
 			Thread loopGame = new Thread(new Runnable() {
+
 				@Override
 				public void run() {
 					gamePresenter.createWindow();
@@ -73,39 +107,18 @@ public class GameController {
 	private synchronized void loopGame() {
 		while (!Display.isCloseRequested() && isGameRuning()) {
 			time.aktualizuj();
-
-			inputUpdate();
-			gamePresenter.renderState(stateOfGame);
-			// gamePresenter.getGameWindow().getMesh().draw();
+			input();
+			gamePresenter.render();
 			// gamePresenter.getGameWindow().getRenderUtil().clearScreen();
 			Display.update();
-
 			try {
-				Thread.sleep(17);
-			} catch (InterruptedException e) {
+				Thread.sleep(REFRESH_INTERVAL_TIME);
+			}
+			catch (InterruptedException e) {
 				logger.log(Level.SEVERE, e.toString(), e);
 			}
 		}
 		destroyWindow();
-	}
-
-	public void inputUpdate() {
-		if (input.getKeyDown(Keyboard.KEY_W)) {
-			System.out.println("W");
-			stateOfGame = StateOfGame.GAME_MENU;
-		}
-		if (input.getKeyDown(Keyboard.KEY_S))
-			System.out.println("S");
-		if (input.getKeyDown(Keyboard.KEY_A))
-			System.out.println("A");
-		if (input.getKeyDown(Keyboard.KEY_D))
-			System.out.println("D");
-
-		if (input.getButtonDown(0))
-			System.out.println("Selected at: " + input.getMousePosition());
-		if (input.getButtonDown(1))
-			stopGame();
-		input.update();
 	}
 
 	public boolean isGameRuning() {
@@ -140,19 +153,15 @@ public class GameController {
 		this.time = time;
 	}
 
-	public StateOfGame getStateOfGame() {
-		return stateOfGame;
-	}
-
-	public void setStateOfGame(StateOfGame stateOfGame) {
-		this.stateOfGame = stateOfGame;
-	}
-
 	public BLog getLogger() {
 		return logger;
 	}
 
 	public void setLogger(BLog logger) {
 		this.logger = logger;
+	}
+
+	private void setStateOfGame(StateOfGame state) {
+		gamePresenter.setStateOfGame(state);
 	}
 }

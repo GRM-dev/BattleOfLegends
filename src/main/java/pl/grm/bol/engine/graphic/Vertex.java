@@ -1,6 +1,9 @@
 package pl.grm.bol.engine.graphic;
 
+import org.lwjgl.util.vector.*;
+
 public class Vertex {
+
 	public static final int SIZE = 3;
 	private Vector3f vector3f;
 

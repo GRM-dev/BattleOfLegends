@@ -1,13 +1,12 @@
-package pl.grm.bol.engine.inputs;
+package pl.grm.bol.game;
 
-import java.util.ArrayList;
+import java.util.*;
 
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
-import pl.grm.bol.engine.graphic.Vector2f;
+import org.lwjgl.input.*;
+import org.lwjgl.util.vector.*;
 
 public class Input {
+
 	private ArrayList<Integer> currentButtons = new ArrayList<Integer>();
 	private ArrayList<Integer> downButtons = new ArrayList<Integer>();
 	private ArrayList<Integer> upButtons = new ArrayList<Integer>();

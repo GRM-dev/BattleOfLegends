@@ -1,4 +1,4 @@
-package pl.grm.bol.filehandler;
+package pl.grm.bol.game;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

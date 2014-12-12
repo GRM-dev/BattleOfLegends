@@ -1,10 +1,11 @@
 package pl.grm.bol.game;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
-import pl.grm.bol.devwindow.BattleOfLegendsDev;
+import pl.grm.bol.devwindow.*;
 
 public class BattleOfLegends {
+
 	private static GameFactory gameFactory;
 	private static GameController gameController;
 

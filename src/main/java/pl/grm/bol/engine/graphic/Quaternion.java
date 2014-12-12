@@ -1,6 +1,9 @@
 package pl.grm.bol.engine.graphic;
 
+import org.lwjgl.util.vector.*;
+
 public class Quaternion {
+
 	private float x;
 	private float y;
 	private float z;
